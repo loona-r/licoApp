@@ -1,8 +1,13 @@
 page-menu {
-  .settings {
-    float: right;
+  .setting,
+  .back {
+    position: absolute;
+    z-index: 2;
     margin-top: 2%;
     margin-right: 2%;
+  }
+  .settings {
+    float: right;
   }
   .back {
     float: left;
@@ -18,6 +23,8 @@ page-menu {
     margin-top: 12%;
     margin-left: 22%;
     margin-right: 22%;
+    position: absolute;
+    z-index: 1;
   }
 
   .grid {

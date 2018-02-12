@@ -8,13 +8,32 @@ import { SettingsPage } from "../settings/settings";
   templateUrl: "home.html"
 })
 export class HomePage {
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  playerList: Array<Object>;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.playerList = [
+      { id: "1", name: "" },
+      { id: "2", name: "" },
+      { id: "3", name: "" },
+      { id: "4", name: "" }
+    ];
+  }
 
   settings() {
     this.navCtrl.push(SettingsPage);
   }
 
-  menuPage() {
-    this.navCtrl.push(MenuPage);
+  menuPage(liste) {
+    this.navCtrl.push(MenuPage, this.playerList);
+  }
+
+  submit() {
+    this.menuPage(this.playerList);
+    console.log(this.playerList);
+  }
+
+  addPlayer() {
+    this.playerList.push({ id: this.playerList.length, name: "" });
+    console.log(this.playerList);
   }
 }

@@ -16,5 +16,6 @@ export class MenuPage {
 
   backPage() {
     this.navCtrl.push(HomePage);
+    console.log("coucou");
   }
 }

@@ -4,24 +4,15 @@
 <ion-header color="primary"> Lico </ion-header>
 
 <ion-list scroll="false">
-  <ion-item>
-    <ion-label color="primary" floating>Joueur 1</ion-label>
-    <ion-input></ion-input>
+  <ion-item *ngFor="let player of playerList">
+    <ion-label color="primary" floating>Joueur {{player.id}}</ion-label>
+    <ion-input name="name" [(ngModel)]="player.name" type="text"></ion-input>
   </ion-item>
-  <ion-item>
-    <ion-label color="primary" floating>Joueur 2</ion-label>
-    <ion-input></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label color="primary" floating>Joueur 3</ion-label>
-    <ion-input></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label color="primary" floating>Joueur 4</ion-label>
-    <ion-input></ion-input>
-  </ion-item>
+  <button class="plus" ion-button icon-only>
+    <ion-icon name="add" (click)="addPlayers()"></ion-icon>
+  </button>
 
-  <button class="bouton" ion-button block color="primary" (click)="menuPage()">Santé !</button>
+  <button class="bouton" ion-button block color="primary" (click)="submit()">Santé !</button>
 
 
 </ion-list>
