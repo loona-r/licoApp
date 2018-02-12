@@ -1,0 +1,28 @@
+page-home {
+  .image {
+    float: right;
+    margin-top: 2%;
+    margin-right: 2%;
+  }
+
+  .list {
+    margin-top: 30%;
+    padding: 1%;
+  }
+
+  .header::after {
+    background-image: none;
+  }
+
+  .header {
+    font-family: "gomarice";
+    color: #d34491;
+    font-size: 8rem;
+    margin-left: 30%;
+    margin-top: 10%;
+  }
+
+  .bouton {
+    margin-top: 20%;
+  }
+}
