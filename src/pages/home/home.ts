@@ -19,16 +19,41 @@ export class HomePage {
     ];
   }
 
-  settings() {
-    this.navCtrl.push(SettingsPage);
+  submit() {
+    this.navCtrl.push(
+      MenuPage,
+      {
+        param1: this.playerList
+      },
+      {
+        animate: true,
+        animation: "md-transition"
+      }
+    );
   }
 
-  submit() {
-    this.navCtrl.push(MenuPage, this.playerList, { animate: false });
+  settings() {
+    this.navCtrl.push(
+      SettingsPage,
+      {
+        param1: this.playerList
+      },
+      {
+        animate: true,
+        animation: "md-transition"
+      }
+    );
   }
 
   addPlayer() {
-    this.playerList.push({ id: this.playerList.length + 1, name: "" });
+    if (this.playerList.length < 10) {
+      this.playerList.push({ id: this.playerList.length + 1, name: "" });
+      console.log(this.playerList);
+    }
+  }
+
+  removePlayer() {
+    this.playerList.splice(this.playerList.length - 1, 1);
     console.log(this.playerList);
   }
 }

@@ -1,17 +1,25 @@
 <ion-content>
-  <img class="buttonBack" src="assets/imgs/chevron.png" (click)="backPage()">
+  <img class="buttonBack" src="assets/imgs/chevron_dark.png" (click)="backPage()">
 
   <div>
     <ion-item>
       <ion-label>Bouton inutile</ion-label>
       <ion-toggle enabled checked="true"></ion-toggle>
     </ion-item>
+
+    <h3>
+      Listes des joueurs :
+    </h3>
+    <p *ngFor="let player of playerList">
+      <b>Joueur {{player.id}} :</b> {{player.name}}
+    </p>
+    <hr>
     <p>
       Lico App est développée par la Lico Team :
       <br/>
       <br/> Lisa Anthonioz
       <br/> Gauthier Le Bagousse
-      <br/> Loona rivière
+      <br/> Loona Rivière
       <br/> Titouan Sola
       <br/>
       <br/>
@@ -19,10 +27,5 @@
 
     <h3>Abonnez-vous à la chaîne de Canaab !</h3>
   </div>
-  <h3>
-    Listes des joueurs :
-  </h3>
-  <ion-item *ngFor="let player of playerList">
-    <br/>{{player.name}}
-  </ion-item>
+
 </ion-content>
