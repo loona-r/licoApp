@@ -8,7 +8,7 @@ import { SettingsPage } from "../settings/settings";
   templateUrl: "home.html"
 })
 export class HomePage {
-  playerList: Array<Object>;
+  playerList: Array<{ id: number; name: string }>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.playerList = [
@@ -30,6 +30,7 @@ export class HomePage {
         animation: "md-transition"
       }
     );
+    console.log(this.playerList);
   }
 
   settings() {
@@ -53,7 +54,9 @@ export class HomePage {
   }
 
   removePlayer() {
-    this.playerList.splice(this.playerList.length - 1, 1);
-    console.log(this.playerList);
+    if (this.playerList.length > 2) {
+      this.playerList.splice(this.playerList.length - 1, 1);
+      console.log(this.playerList);
+    }
   }
 }

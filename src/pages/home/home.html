@@ -4,10 +4,20 @@
 <ion-header color="primary"> Lico </ion-header>
 
 <ion-content color="primary">
+
+  <!-- <div class="joueurs" *ngIf="playerList.length > 0">
+    <ion-item *ngFor="let player of playerList">
+      <ion-label color="primary" floating>Joueur {{player.id}}</ion-label>
+      <ion-input name="name" [(ngModel)]="player.name" type="text" required></ion-input>
+    </ion-item>
+    <img *ngIf="playerList.length < 10" class="add" src="assets/imgs/add.png" (click)="addPlayer()">
+    <img class="remove" src="assets/imgs/delete.png" (click)="removePlayer()">
+  </div> -->
+
   <div class="joueurs">
     <ion-item *ngFor="let player of playerList">
       <ion-label color="primary" floating>Joueur {{player.id}}</ion-label>
-      <ion-input name="name" [(ngModel)]="player.name" type="text"></ion-input>
+      <ion-input name="name" [(ngModel)]="player.name" type="text" required></ion-input>
     </ion-item>
     <img *ngIf="playerList.length < 10" class="add" src="assets/imgs/add.png" (click)="addPlayer()">
     <img class="remove" src="assets/imgs/delete.png" (click)="removePlayer()">

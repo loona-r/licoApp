@@ -6,7 +6,7 @@ import { NavController, NavParams } from "ionic-angular";
   templateUrl: "settings.html"
 })
 export class SettingsPage {
-  playerList: Array<Object>;
+  playerList: Array<{ id: number; name: string }>;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.playerList = navParams.get("param1");
   }

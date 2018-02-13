@@ -10,9 +10,11 @@
     <h3>
       Listes des joueurs :
     </h3>
-    <p *ngFor="let player of playerList">
-      <b>Joueur {{player.id}} :</b> {{player.name}}
-    </p>
+    <div *ngFor="let player of playerList">
+      <p *ngIf="player.name != ''">
+        <b>Joueur {{player.id}} :</b> {{player.name}}
+      </p>
+    </div>
     <hr>
     <p>
       Lico App est développée par la Lico Team :
