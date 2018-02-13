@@ -12,10 +12,10 @@ export class HomePage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.playerList = [
-      { id: "1", name: "" },
-      { id: "2", name: "" },
-      { id: "3", name: "" },
-      { id: "4", name: "" }
+      { id: 1, name: "" },
+      { id: 2, name: "" },
+      { id: 3, name: "" },
+      { id: 4, name: "" }
     ];
   }
 
@@ -33,7 +33,7 @@ export class HomePage {
   }
 
   addPlayer() {
-    this.playerList.push({ id: this.playerList.length, name: "" });
+    this.playerList.push({ id: this.playerList.length + 1, name: "" });
     console.log(this.playerList);
   }
 }

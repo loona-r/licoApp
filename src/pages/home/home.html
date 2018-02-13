@@ -3,16 +3,14 @@
 
 <ion-header color="primary"> Lico </ion-header>
 
-<ion-list scroll="false">
+<ion-content color="primary">
   <ion-item *ngFor="let player of playerList">
     <ion-label color="primary" floating>Joueur {{player.id}}</ion-label>
     <ion-input name="name" [(ngModel)]="player.name" type="text"></ion-input>
   </ion-item>
-  <button class="plus" ion-button icon-only>
+  <button class="plus" ion-button icon-only color="primary" (click)="addPlayer()">
     <ion-icon name="add" (click)="addPlayers()"></ion-icon>
   </button>
+  <button class="valider" ion-button block color="primary" (click)="submit()">Santé !</button>
 
-  <button class="bouton" ion-button block color="primary" (click)="submit()">Santé !</button>
-
-
-</ion-list>
+</ion-content>
