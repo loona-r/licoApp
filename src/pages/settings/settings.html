@@ -19,4 +19,10 @@
 
     <h3>Abonnez-vous à la chaîne de Canaab !</h3>
   </div>
+  <h3>
+    Listes des joueurs :
+  </h3>
+  <ion-item *ngFor="let player of playerList">
+    <br/>{{player.name}}
+  </ion-item>
 </ion-content>

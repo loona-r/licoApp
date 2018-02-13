@@ -72,8 +72,12 @@ $colors: (
 $toolbar-ios-title-font-size: 8rem;
 $toolbar-md-title-font-size: 8rem;
 $toolbar-wp-title-font-size: 8rem;
-$background-color: #ffa6b2;
-$list-background-color: #ffa6b2;
-$list-text-color: white;
-$text-input-placeholder-color: white;
-$list-border-color: white;
+$background-color: #ffdce1;
+$list-background-color: #ffdce1;
+$list-text-color: #644d59;
+//$text-input-placeholder-color: #644d59;
+$text-input-highlight-color-valid: #d34491;
+
+.ion-page {
+  background: #ffdce1;
+}

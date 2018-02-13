@@ -23,13 +23,8 @@ export class HomePage {
     this.navCtrl.push(SettingsPage);
   }
 
-  menuPage(liste) {
-    this.navCtrl.push(MenuPage, this.playerList);
-  }
-
   submit() {
-    this.menuPage(this.playerList);
-    console.log(this.playerList);
+    this.navCtrl.push(MenuPage, this.playerList, { animate: false });
   }
 
   addPlayer() {
