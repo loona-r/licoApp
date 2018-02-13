@@ -8,12 +8,34 @@ import { MyApp } from "./app.component";
 import { HomePage } from "../pages/home/home";
 import { MenuPage } from "../pages/menu/menu";
 import { SettingsPage } from "../pages/settings/settings";
+import { PicoloPage } from "../pages/picolo/picolo";
+import { HighwayPage } from "../pages/highway/highway";
+import { BetSumPage } from "../pages/bet-sum/bet-sum";
+import { SelfDrawPage } from "../pages/self-draw/self-draw";
 
 @NgModule({
-  declarations: [MyApp, HomePage, MenuPage, SettingsPage],
+  declarations: [
+    MyApp,
+    HomePage,
+    MenuPage,
+    SettingsPage,
+    PicoloPage,
+    HighwayPage,
+    BetSumPage,
+    SelfDrawPage
+  ],
   imports: [BrowserModule, IonicModule.forRoot(MyApp)],
   bootstrap: [IonicApp],
-  entryComponents: [MyApp, HomePage, MenuPage, SettingsPage],
+  entryComponents: [
+    MyApp,
+    HomePage,
+    MenuPage,
+    SettingsPage,
+    PicoloPage,
+    HighwayPage,
+    BetSumPage,
+    SelfDrawPage
+  ],
   providers: [
     StatusBar,
     SplashScreen,

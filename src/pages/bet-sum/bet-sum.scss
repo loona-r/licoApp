@@ -1,0 +1,28 @@
+page-bet-sum {
+  .settings {
+    float: right;
+    margin-top: 2%;
+    margin-right: 2%;
+    position: relative;
+    z-index: 2;
+  }
+  .back {
+    float: left;
+    margin-top: 2%;
+    margin-left: 2%;
+    position: relative;
+    z-index: 2;
+  }
+  .header::after {
+    background-image: none;
+  }
+
+  .lico {
+    width: 55%;
+    margin-top: 12%;
+    margin-left: 22%;
+    margin-right: 22%;
+    position: absolute;
+    z-index: 1;
+  }
+}

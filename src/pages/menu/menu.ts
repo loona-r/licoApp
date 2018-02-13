@@ -3,6 +3,10 @@ import { NavController, NavParams } from "ionic-angular";
 import { SettingsPage } from "../settings/settings";
 import { AlertController } from "ionic-angular/components/alert/alert-controller";
 import { HomePage } from "../home/home";
+import { SelfDrawPage } from "../self-draw/self-draw";
+import { BetSumPage } from "../bet-sum/bet-sum";
+import { PicoloPage } from "../picolo/picolo";
+import { HighwayPage } from "../highway/highway";
 
 @Component({
   selector: "page-menu",
@@ -16,12 +20,6 @@ export class MenuPage {
     public alertCtrl: AlertController
   ) {
     this.playerList = navParams.get("param1");
-
-    // this.playerList.forEach(function(player, index, list) {
-    //   if ((player.name = "")) {
-    //     list.splice(index, 1);
-    //   }
-    // });
   }
 
   settings() {
@@ -56,7 +54,11 @@ export class MenuPage {
         },
         {
           text: "Jouer",
-          handler: data => {}
+          handler: data => {
+            this.navCtrl.push(HighwayPage, {
+              param1: this.playerList
+            });
+          }
         }
       ]
     });
@@ -78,7 +80,11 @@ export class MenuPage {
         },
         {
           text: "Jouer",
-          handler: data => {}
+          handler: data => {
+            this.navCtrl.push(PicoloPage, {
+              param1: this.playerList
+            });
+          }
         }
       ]
     });
@@ -100,7 +106,11 @@ export class MenuPage {
         },
         {
           text: "Jouer",
-          handler: data => {}
+          handler: data => {
+            this.navCtrl.push(BetSumPage, {
+              param1: this.playerList
+            });
+          }
         }
       ]
     });
@@ -122,7 +132,11 @@ export class MenuPage {
         },
         {
           text: "Jouer",
-          handler: data => {}
+          handler: data => {
+            this.navCtrl.push(SelfDrawPage, {
+              param1: this.playerList
+            });
+          }
         }
       ]
     });
