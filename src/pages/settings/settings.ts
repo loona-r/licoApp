@@ -43,7 +43,11 @@ export class SettingsPage {
       title: "Félicitations !!",
       subTitle:
         "Bravo, tu as cliqué sur le bouton inutile ! Bois 2 gorgées pour célébrer cette trouvaille",
-      buttons: ["OK"]
+      buttons: [
+        {
+          text: "COOL"
+        }
+      ]
     });
     alert.present();
   }
