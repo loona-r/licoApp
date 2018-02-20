@@ -4,7 +4,7 @@
   <div>
     <ion-item>
       <ion-label>Bouton inutile</ion-label>
-      <ion-toggle enabled checked="true"></ion-toggle>
+      <ion-toggle enabled checked="true" (ionChange)="boutonInutile()"></ion-toggle>
     </ion-item>
 
     <h3 *ngIf="countEmptyPlayer()">

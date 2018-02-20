@@ -42,33 +42,26 @@ $colors: (
 // App Material Design Variables
 // --------------------------------------------------
 // Material Design only Sass variables can go here
-
 // App Windows Variables
 // --------------------------------------------------
 // Windows only Sass variables can go here
-
 // App Theme
 // --------------------------------------------------
 // Ionic apps can have different themes applied, which can
 // then be future customized. This import comes last
 // so that the above variables are used and Ionic's
 // default are overridden.
-
 @import "ionic.theme.default";
-
 // Ionicons
 // --------------------------------------------------
+
 // The premium icon font for Ionic. For more info, please see:
 // http://ionicframework.com/docs/ionicons/
-
 @import "ionic.ionicons";
-
 // Fonts
 // --------------------------------------------------
-
 @import "roboto";
 @import "noto-sans";
-
 $toolbar-ios-title-font-size: 8rem;
 $toolbar-md-title-font-size: 8rem;
 $toolbar-wp-title-font-size: 8rem;
@@ -76,7 +69,6 @@ $background-color: #ffdce1;
 $list-background-color: #ffdce1;
 $list-text-color: #644d59;
 $text-input-highlight-color-valid: #d34491;
-
 .ion-page {
   background: #ffdce1;
 }

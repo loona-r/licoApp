@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { NavController, NavParams } from "ionic-angular";
+import { AlertController } from "ionic-angular/components/alert/alert-controller";
 
 @Component({
   selector: "page-settings",
@@ -7,7 +8,11 @@ import { NavController, NavParams } from "ionic-angular";
 })
 export class SettingsPage {
   playerList: Array<{ id: number; name: string }>;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public alertCtrl: AlertController
+  ) {
     this.playerList = navParams.get("param1");
   }
 
@@ -31,5 +36,15 @@ export class SettingsPage {
     } else {
       return true;
     }
+  }
+
+  boutonInutile() {
+    let alert = this.alertCtrl.create({
+      title: "Félicitations !!",
+      subTitle:
+        "Bravo, tu as cliqué sur le bouton inutile ! Bois 2 gorgées pour célébrer cette trouvaille",
+      buttons: ["OK"]
+    });
+    alert.present();
   }
 }
