@@ -25,8 +25,9 @@ export class BetSumPage {
     public alertCtrl: AlertController
   ) {
     this.playerList = navParams.get("param1");
-    this.oui();
-    this.index = 1;
+    this.joueur = this.playerList[1].name;
+    this.randomNumber();
+    this.index = 0;
     this.choosePlayer();
   }
 
@@ -47,7 +48,7 @@ export class BetSumPage {
     this.navCtrl.pop();
   }
 
-  oui() {
+  randomNumber() {
     this.aleaNumber = Math.floor(Math.random() * 10);
   }
 
@@ -68,6 +69,7 @@ export class BetSumPage {
           text: "Oui",
           handler: () => {
             console.log(this.aleaNumber);
+            this.randomNumber();
             this.index++;
             this.choosePlayer();
           }
@@ -78,10 +80,19 @@ export class BetSumPage {
   }
 
   choosePlayer() {
-    this.playerList.forEach(element => {
-      if (element.id == this.index) {
-        this.joueur = element.name;
-      }
-    });
+    if (this.index < this.playerList.length) {
+      this.playerList.forEach(element => {
+        if (this.playerList.indexOf(element) == this.index) {
+          this.joueur = element.name;
+        }
+      });
+    } else {
+      this.index = 0;
+      this.playerList.forEach(element => {
+        if (this.playerList.indexOf(element) == this.index) {
+          this.joueur = element.name;
+        }
+      });
+    }
   }
 }
