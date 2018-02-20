@@ -2,6 +2,17 @@
 <img class="back" src="assets/imgs/chevron_dark.png" (click)="backPage()">
 
 
-<ion-header color="primary">
-  <img class="lico" src="assets/imgs/licorne.png">
-</ion-header>
+
+<ion-content padding>
+
+  <ion-slides>
+    <ion-slide on-swipe="oui()">
+      <p class="number" (click)="onClick()">
+        <img class="swipe" src="assets/imgs/swipe_l.png"> {{aleaNumber}}
+        <img class="swipe" src="assets/imgs/swipe_r.png">
+      </p>
+    </ion-slide>
+  </ion-slides>
+
+  <h1>{{joueur}}</h1>
+</ion-content>

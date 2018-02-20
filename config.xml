@@ -24,6 +24,10 @@
         <icon src="resources/android/icon/licorne-rond.png" />
         <splash src="resources/android/splash/splashscreen.png" />
     </platform>
+    <platform name="web">
+        <allow-intent href="market:*" />
+        <icon src="resources/android/icon/licorne-rond.png" />
+    </platform>
     <plugin name="cordova-plugin-whitelist" spec="^1.3.3" />
     <plugin name="cordova-plugin-device" spec="^2.0.1" />
     <plugin name="cordova-plugin-splashscreen" spec="^5.0.2" />

@@ -2,7 +2,6 @@ import { Component } from "@angular/core";
 import { NavController, NavParams } from "ionic-angular";
 import { SettingsPage } from "../settings/settings";
 import { AlertController } from "ionic-angular/components/alert/alert-controller";
-import { HomePage } from "../home/home";
 import { SelfDrawPage } from "../self-draw/self-draw";
 import { BetSumPage } from "../bet-sum/bet-sum";
 import { PicoloPage } from "../picolo/picolo";
@@ -19,7 +18,9 @@ export class MenuPage {
     public navParams: NavParams,
     public alertCtrl: AlertController
   ) {
-    this.playerList = navParams.get("param1");
+    this.playerList = navParams.get("param1").filter(function(x) {
+      return x.name != "";
+    });
   }
 
   settings() {

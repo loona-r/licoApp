@@ -20,7 +20,7 @@
       <ion-input name="name" [(ngModel)]="player.name" type="text" required></ion-input>
     </ion-item>
     <img *ngIf="playerList.length < 10" class="add" src="assets/imgs/add.png" (click)="addPlayer()">
-    <img class="remove" src="assets/imgs/delete.png" (click)="removePlayer()">
+    <img *ngIf="playerList.length > 2" class="remove" src="assets/imgs/delete.png" (click)="removePlayer()">
   </div>
 </ion-content>
 <div class="valider">
