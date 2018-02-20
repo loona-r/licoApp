@@ -14,4 +14,22 @@ export class SettingsPage {
   backPage() {
     this.navCtrl.pop({ animate: false });
   }
+
+  countEmptyPlayer() {
+    var count = 0;
+    this.playerList.forEach(element => {
+      if (element.name == "") {
+        count++;
+      }
+    });
+    console.log("count" + count);
+    if (
+      count == this.playerList.length ||
+      (this.playerList.length == 2 && count == 1)
+    ) {
+      return false;
+    } else {
+      return true;
+    }
+  }
 }

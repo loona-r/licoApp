@@ -36,9 +36,7 @@ export class HomePage {
   settings() {
     this.navCtrl.push(
       SettingsPage,
-      {
-        param1: this.playerList
-      },
+      {},
       {
         animate: true,
         animation: "md-transition"

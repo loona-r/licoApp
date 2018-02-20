@@ -7,15 +7,15 @@
       <ion-toggle enabled checked="true"></ion-toggle>
     </ion-item>
 
-    <h3>
+    <h3 *ngIf="countEmptyPlayer()">
       Listes des joueurs :
     </h3>
     <div *ngFor="let player of playerList">
       <p *ngIf="player.name != ''">
         <b>Joueur {{player.id}} :</b> {{player.name}}
       </p>
+      <hr>
     </div>
-    <hr>
     <p>
       Lico App est développée par la Lico Team :
       <br/>
