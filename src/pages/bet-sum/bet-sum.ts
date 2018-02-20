@@ -19,6 +19,7 @@ export class BetSumPage {
   aleaNumber: number;
   index: number;
   joueur: string;
+  somme: number;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -29,6 +30,7 @@ export class BetSumPage {
     this.randomNumber();
     this.index = 0;
     this.choosePlayer();
+    this.somme = 0;
   }
 
   settings() {
@@ -68,7 +70,7 @@ export class BetSumPage {
         {
           text: "Oui",
           handler: () => {
-            console.log(this.aleaNumber);
+            this.somme = this.somme + this.aleaNumber;
             this.randomNumber();
             this.index++;
             this.choosePlayer();
@@ -87,12 +89,37 @@ export class BetSumPage {
         }
       });
     } else {
-      this.index = 0;
-      this.playerList.forEach(element => {
-        if (this.playerList.indexOf(element) == this.index) {
-          this.joueur = element.name;
-        }
+      // this.index = 0;
+      // this.playerList.forEach(element => {
+      //   if (this.playerList.indexOf(element) == this.index) {
+      //     this.joueur = element.name;
+      //   }
+      // });
+      let alert = this.alertCtrl.create({
+        title: "FIN DU JEU",
+        subTitle: "Faites vos paris !",
+        buttons: [
+          {
+            text: "Afficher Somme",
+            handler: () => {
+              let alert = this.alertCtrl.create({
+                title: "Résultats",
+                subTitle: "Somme : " + this.somme,
+                buttons: [
+                  {
+                    text: "Ok",
+                    handler: () => {
+                      this.backPage();
+                    }
+                  }
+                ]
+              });
+              alert.present();
+            }
+          }
+        ]
       });
+      alert.present();
     }
   }
 }
