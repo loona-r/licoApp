@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { NavController, NavParams } from "ionic-angular";
 import { MenuPage } from "../menu/menu";
 import { SettingsPage } from "../settings/settings";
+import { ToastController } from "ionic-angular/components/toast/toast-controller";
 
 @Component({
   selector: "page-home",
@@ -10,7 +11,11 @@ import { SettingsPage } from "../settings/settings";
 export class HomePage {
   playerList: Array<{ id: number; name: string }>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public toastCtrl: ToastController
+  ) {
     this.playerList = [{ id: 1, name: "" }, { id: 2, name: "" }];
   }
 
@@ -29,6 +34,18 @@ export class HomePage {
           animation: "md-transition"
         }
       );
+    } else {
+      let toast = this.toastCtrl.create({
+        message: "Il faut au moins 2 joueurs",
+        duration: 3000,
+        position: "bottom"
+      });
+
+      toast.onDidDismiss(() => {
+        console.log("Dismissed toast");
+      });
+
+      toast.present();
     }
     console.log(this.playerList);
   }

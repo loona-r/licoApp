@@ -4,8 +4,12 @@
 
 
 
-<ion-content padding>
-
+<ion-content>
+  <ion-chip class="joueur">
+    <ion-label>
+      <b>Joueur {{index+1}} :</b> {{joueur}}
+    </ion-label>
+  </ion-chip>
   <ion-slides>
 
     <ion-slide on-swipe="randomNumber()">
@@ -16,7 +20,6 @@
     </ion-slide>
   </ion-slides>
 
-
-  <div class="joueur">
-    <b>Joueur {{index+1}} :</b> {{joueur}}</div>
+  <!-- <div class="joueur">
+    <b>Joueur {{index+1}} :</b> {{joueur}}</div> -->
 </ion-content>

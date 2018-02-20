@@ -96,7 +96,7 @@ export class MenuPage {
     let alert = this.alertCtrl.create({
       title: "Bet Sum",
       subTitle:
-        "Bet Sum est un jeu de pari sur une somme de chiffre. Chaque joueur doit, dans un premier temps, choisir un chiffre. Pour cela, il swippe horizontalement, pour faire défiler les 9 chiffres (qui apparaissent aléatoirement, de façon à ce qu'on ne puisse pas deviner le chiffre choisi). Pour valider, le joueur doit faire un simple appui sur l'écran. Lorsque tout le monde à choisi un chiffre, ils parient sur la somme de tous les chiffres. Finalement, l'application affiche la somme, et le joueur qui est le plus loin du compte boit.",
+        "Bet Sum est un jeu de pari sur une somme de chiffre. Pour valider, le joueur doit faire un simple appui sur l'écran. Lorsque tout le monde a choisi un chiffre, ils parient sur la somme de tous les chiffres. Finalement, le joueur qui est le plus loin du compte boit.",
       buttons: [
         {
           text: "Annuler",
