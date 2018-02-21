@@ -2,6 +2,9 @@
 <img class="back" src="assets/imgs/chevron_dark.png" (click)="backPage()">
 
 
-<ion-header color="primary">
-  <img class="lico" src="assets/imgs/licorne.png">
-</ion-header>
+<ion-content fullscreen>
+
+  <div class="card">
+    <img src={{chosenCard}} (click)="randomCard()" />
+  </div>
+</ion-content>
