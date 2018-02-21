@@ -17,7 +17,7 @@ export class HighwayPage {
   playerList: Array<{ id: number; name: string }>;
   imgPath: string;
   cards: Array<string>;
-  chosenCard: string;
+  chosenCard: Array<string>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.playerList = navParams.get("param1");
@@ -76,7 +76,14 @@ export class HighwayPage {
       "dame_carreau",
       "roi_carreau"
     ];
-    this.chosenCard = this.imgPath + "back.png";
+    this.chosenCard = [
+      this.imgPath + "back.png",
+      this.imgPath + "back.png",
+      this.imgPath + "back.png",
+      this.imgPath + "back.png",
+      this.imgPath + "back.png",
+      this.imgPath + "back.png"
+    ];
   }
 
   settings() {
@@ -96,12 +103,13 @@ export class HighwayPage {
     this.navCtrl.pop();
   }
 
-  randomCard() {
+  randomCard(indexCard) {
     var i = Math.floor(Math.random() * this.cards.length);
+    console.log("index : " + i);
     if (this.cards.length > 0) {
-      this.chosenCard = this.imgPath + this.cards[i] + ".png";
+      this.chosenCard[indexCard] = this.imgPath + this.cards[i] + ".png";
+      console.log(this.chosenCard[indexCard]);
       this.cards.splice(i, 1);
-      console.log(this.chosenCard);
     }
   }
 }

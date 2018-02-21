@@ -17,10 +17,14 @@ page-highway {
     background-image: none;
   }
 
-  .card {
+  .cards {
     margin-top: 30%;
-    width: 40%;
-    margin-left: auto;
+    display: inline-block;
+    margin-left: 3%;
     margin-right: auto;
+  }
+
+  .card {
+    max-width: 15%;
   }
 }
