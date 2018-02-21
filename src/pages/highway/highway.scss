@@ -1,17 +1,18 @@
 page-highway {
   .settings {
     float: right;
-    margin-top: 2%;
-    margin-right: 2%;
-    position: relative;
-    z-index: 2;
   }
   .back {
     float: left;
+  }
+
+  .head {
+    color: #644d59;
+    text-align: center;
+    font-size: 25px;
     margin-top: 2%;
-    margin-left: 2%;
-    position: relative;
-    z-index: 2;
+    margin-left: auto;
+    margin-right: auto;
   }
   .header::after {
     background-image: none;
@@ -29,14 +30,23 @@ page-highway {
   }
 
   .hiddenCard {
-    margin-top: 30%;
+    margin-top: 20%;
     width: 100%;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
   }
 
-  .h1 {
-    margin-left: 10%;
+  .bouton {
+    margin-bottom: 50%;
+  }
+
+  .manche {
+    color: #644d59;
+    text-align: center;
+    font-size: 25px;
+    margin-top: 2%;
+    margin-left: auto;
+    margin-right: auto;
   }
 }

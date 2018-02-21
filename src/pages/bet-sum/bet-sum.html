@@ -1,15 +1,13 @@
-<img class="settings" src="assets/imgs/settings_dark.png" (click)="settings()">
-<img class="back" src="assets/imgs/chevron_dark.png" (click)="backPage()">
-
-
-
-
 <ion-content>
-  <ion-chip class="joueur">
-    <ion-label>
-      <b>Joueur {{index+1}} :</b> {{joueur}}
-    </ion-label>
-  </ion-chip>
+  <div class="head">
+    <img class="back" src="assets/imgs/chevron_dark.png" (click)="backPage()">
+    <ion-chip>
+      <ion-label>
+        <b>Joueur {{index+1}} :</b> {{joueur}}
+      </ion-label>
+    </ion-chip>
+    <img class="settings" src="assets/imgs/settings_dark.png" (click)="settings()">
+  </div>
   <ion-slides>
 
     <ion-slide on-swipe="randomNumber()">

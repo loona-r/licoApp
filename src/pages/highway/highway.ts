@@ -19,6 +19,7 @@ export class HighwayPage {
   imgPath: string;
   joueur: string;
   indexJoueur: number;
+  centerCard = { name: "back", value: 0 };
   cards: Array<{ name: string; value: number }>;
   chosenCard: Array<{ name: string; value: number }>;
   nextCard = { name: "back", value: 0 };
@@ -31,7 +32,7 @@ export class HighwayPage {
     public alertCtrl: AlertController
   ) {
     this.playerList = navParams.get("param1");
-    this.joueur = this.playerList[1].name;
+    this.joueur = this.playerList[0].name;
     this.imgPath = "assets/imgs/cards/";
     this.initJeu();
     this.indexJoueur = 0;
@@ -110,6 +111,7 @@ export class HighwayPage {
     var i = Math.floor(Math.random() * this.cards.length);
     this.chosenCard[0].name = this.cards[i].name;
     this.chosenCard[0].value = this.cards[i].value;
+    this.centerCard = this.chosenCard[0];
     this.cards.splice(i, 1);
   }
 
@@ -132,60 +134,77 @@ export class HighwayPage {
 
   randomCard() {
     var i = Math.floor(Math.random() * this.cards.length);
-    console.log(this.cards);
-    console.log(this.cards[32]);
     this.nextCard.name = this.cards[i].name;
     this.nextCard.value = this.cards[i].value;
-    console.log("index : " + this.modifIndex);
   }
 
   deleteCard(nom, val) {
     this.cards.forEach(element => {
       if (element.name == nom) {
-        console.log("nom element : " + element.name + " | nom carte : " + nom);
-        this.cards.splice(this.cards.indexOf(element));
+        this.cards.splice(this.cards.indexOf(element), 1);
       }
     });
-
-    console.log(this.cards);
   }
 
   newCard(val) {
-    if (this.modifIndex < 6) {
+    if (this.modifIndex < 4) {
+      console.log("MODIFINDEX : " + this.modifIndex);
+      console.log(this.chosenCard);
+      console.log(this.centerCard);
       this.randomCard();
       if (val == 1) {
-        console.log("Plus");
         this.chosenCard[this.modifIndex + 1].name = this.nextCard.name;
         this.chosenCard[this.modifIndex + 1].value = this.nextCard.value;
         this.deleteCard(this.nextCard.name, this.nextCard.value);
-        console.log(
-          "Valeur next card  : " +
-            this.nextCard.value +
-            "| Valeur index : " +
-            this.chosenCard[this.modifIndex].value
-        );
-        if (this.nextCard.value < this.chosenCard[this.modifIndex].value) {
-          console.log("Plus If2");
-          this.alertErreur();
+
+        if (this.nextCard.value <= this.chosenCard[this.modifIndex].value) {
+          if (this.manche < 3) {
+            console.log("2+ MODIFINDEX : " + this.modifIndex);
+            this.alertErreur();
+          } else {
+            if (this.indexJoueur + 1 < this.playerList.length)
+              this.finJeuJoueur();
+            else this.finJeu();
+          }
         }
       } else if (val == 0) {
-        console.log("Moins");
         this.chosenCard[this.modifIndex + 1].name = this.nextCard.name;
         this.chosenCard[this.modifIndex + 1].value = this.nextCard.value;
         this.deleteCard(this.nextCard.name, this.nextCard.value);
-        console.log(
-          "Valeur next card  : " +
-            this.nextCard.value +
-            "| Valeur index : " +
-            this.chosenCard[this.modifIndex].value
-        );
-        if (this.nextCard.value > this.chosenCard[this.modifIndex].value) {
-          console.log("Moins If2");
-          this.alertErreur();
+
+        if (this.nextCard.value >= this.chosenCard[this.modifIndex].value) {
+          if (this.manche < 3) {
+            console.log("2- MODIFINDEX : " + this.modifIndex);
+            this.alertErreur();
+          } else {
+            if (this.indexJoueur + 1 < this.playerList.length)
+              this.finJeuJoueur();
+            else this.finJeu();
+          }
         }
       }
       this.modifIndex++;
+
+      this.centerCard = this.chosenCard[this.modifIndex];
+    } else {
+      this.alertWinner();
     }
+  }
+
+  alertWinner() {
+    let alert = this.alertCtrl.create({
+      title: "FELICITATIONS JOUEUR " + this.joueur + " !!",
+      subTitle: "Tu peux distribuer 6 gorgées",
+      buttons: [
+        {
+          text: "OK",
+          handler: data => {
+            this.navCtrl.pop();
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 
   alertErreur() {
@@ -205,66 +224,46 @@ export class HighwayPage {
     alert.present();
   }
 
-  testFinJeuJoueur() {
-    //if (this.manche == 3) {
+  finJeuJoueur() {
     let alert = this.alertCtrl.create({
       title: "GAME OVER",
       subTitle: "Perdu ! Tu es nul. Cul sec.",
       buttons: [
         {
           text: "ok..",
-          handler: data => {}
+          handler: data => {
+            this.changePlayer();
+            this.initJeu();
+            this.manche = 1;
+          }
         }
       ]
     });
     alert.present();
-    //return true;
-    //}
-    //return false;
+  }
+
+  finJeu() {
+    let alert = this.alertCtrl.create({
+      title: "FIN DU JEU",
+      subTitle: "Pour fêter ca on boit tous",
+      buttons: [
+        {
+          text: "Ouaaaais",
+          handler: data => {
+            this.navCtrl.pop();
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 
   changePlayer() {
-    if (this.indexJoueur < this.playerList.length) {
-      this.playerList.forEach(element => {
-        if (this.playerList.indexOf(element) == this.indexJoueur) {
-          this.joueur = element.name;
-        }
-      });
-    } else {
-      let alert = this.alertCtrl.create({
-        title: "FIN DU JEU",
-        subTitle: "Pour fêter ca on boit tous",
-        buttons: [
-          {
-            text: "Ouaaaais",
-            handler: data => {
-              this.navCtrl.pop();
-            }
-          }
-        ]
-      });
-      alert.present();
-    }
+    this.indexJoueur++;
+    this.playerList.forEach(element => {
+      if (this.playerList.indexOf(element) == this.indexJoueur) {
+        this.joueur = element.name;
+      }
+    });
   }
-
-  // randomCard(indexCard) {
-  //   var i = Math.floor(Math.random() * this.cards.length);
-  //   console.log("index : " + i);
-  //   if (
-  //     this.cards.length > 0 &&
-  //     indexCard == this.modifIndex &&
-  //     indexCard != 6
-  //   ) {
-  //     this.chosenCard[indexCard] = this.imgPath + this.cards[i] + ".png";
-  //     console.log(this.chosenCard[indexCard]);
-  //     this.cards.splice(i, 1);
-  //     this.modifIndex++;
-  //   }
-  //   if (indexCard == 6) {
-  //     this.chosenCard[indexCard] = this.imgPath + this.cards[i] + ".png";
-  //     console.log(this.chosenCard[indexCard]);
-  //     this.cards.splice(i, 1);
-  //     this.modifIndex++;
-  //   }
-  // }
 }

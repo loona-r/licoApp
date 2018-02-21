@@ -1,28 +1,32 @@
-<img class="settings" src="assets/imgs/settings_dark.png" (click)="settings()">
-<img class="back" src="assets/imgs/chevron_dark.png" (click)="backPage()">
-
-
 <ion-content fullscreen>
-  <ion-chip class="joueur">
-    <ion-label>
-      <b>Joueur {{indexJoueur+1}} :</b> {{joueur}}
-    </ion-label>
-  </ion-chip>
-  <div class="cards">
-    <img class="card" src="{{this.imgPath}}{{chosenCard[0].name}}.png" />
-    <img class="card" src="{{this.imgPath}}{{chosenCard[1].name}}.png" />
-    <img class="card" src="{{this.imgPath}}{{chosenCard[2].name}}.png" />
-    <img class="card" src="{{this.imgPath}}{{chosenCard[3].name}}.png" />
-    <img class="card" src="{{this.imgPath}}{{chosenCard[4].name}}.png" />
-    <img class="card" src="{{this.imgPath}}{{chosenCard[5].name}}.png" />
+  <div class="head">
+    <img class="back" src="assets/imgs/chevron_dark.png" (click)="backPage()">
+    <ion-chip>
+      <ion-label>
+        <b>Joueur {{indexJoueur+1}} :</b> {{joueur}}
+      </ion-label>
+    </ion-chip>
+    <img class="settings" src="assets/imgs/settings_dark.png" (click)="settings()">
   </div>
-  <div class="hiddenCard">
-    <button ion-button round (click)="newCard(1)">+</button>
-    <img src="assets/imgs/cards/back.png" />
-    <button ion-button round (click)="newCard(0)">-</button>
+  <div>
+    <div class="cards">
+      <img class="card" *ngIf="centerCard != chosenCard[0]; else back" src="{{this.imgPath}}{{chosenCard[0].name}}.png" />
+      <img class="card" *ngIf="centerCard != chosenCard[1]; else back" src="{{this.imgPath}}{{chosenCard[1].name}}.png" />
+      <img class="card" *ngIf="centerCard != chosenCard[2]; else back" src="{{this.imgPath}}{{chosenCard[2].name}}.png" />
+      <img class="card" *ngIf="centerCard != chosenCard[3]; else back" src="{{this.imgPath}}{{chosenCard[3].name}}.png" />
+      <img class="card" *ngIf="centerCard != chosenCard[4]; else back" src="{{this.imgPath}}{{chosenCard[4].name}}.png" />
+      <img class="card" *ngIf="centerCard != chosenCard[5]; else back" src="{{this.imgPath}}{{chosenCard[5].name}}.png" />
+      <ng-template #back>
+        <img class="card" src="{{this.imgPath}}select.png" />
+      </ng-template>
+    </div>
+    <div class="hiddenCard">
+      <button ion-button round class="bouton" (click)="newCard(0)">-</button>
+      <img src="{{this.imgPath}}{{centerCard.name}}.png" />
+      <button ion-button round class="bouton" (click)="newCard(1)">+</button>
+    </div>
   </div>
-
-  <h1>
+  <div class="manche">
     <b>Manche {{manche}} </b>
-  </h1>
+  </div>
 </ion-content>
