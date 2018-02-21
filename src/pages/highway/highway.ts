@@ -115,23 +115,6 @@ export class HighwayPage {
     this.cards.splice(i, 1);
   }
 
-  settings() {
-    this.navCtrl.push(
-      SettingsPage,
-      {
-        param1: this.playerList
-      },
-      {
-        animate: true,
-        animation: "md-transition"
-      }
-    );
-  }
-
-  backPage() {
-    this.navCtrl.pop();
-  }
-
   randomCard() {
     var i = Math.floor(Math.random() * this.cards.length);
     this.nextCard.name = this.cards[i].name;
@@ -191,6 +174,16 @@ export class HighwayPage {
     }
   }
 
+  changePlayer() {
+    this.indexJoueur++;
+    this.playerList.forEach(element => {
+      if (this.playerList.indexOf(element) == this.indexJoueur) {
+        this.joueur = element.name;
+      }
+    });
+  }
+
+  /*** ALERTES ***/
   alertWinner() {
     let alert = this.alertCtrl.create({
       title: "FELICITATIONS JOUEUR " + this.joueur + " !!",
@@ -203,7 +196,8 @@ export class HighwayPage {
             this.initJeu();
           }
         }
-      ]
+      ],
+      enableBackdropDismiss: false
     });
     alert.present();
   }
@@ -221,7 +215,8 @@ export class HighwayPage {
             this.initJeu();
           }
         }
-      ]
+      ],
+      enableBackdropDismiss: false
     });
     alert.present();
   }
@@ -239,7 +234,8 @@ export class HighwayPage {
             this.manche = 1;
           }
         }
-      ]
+      ],
+      enableBackdropDismiss: false
     });
     alert.present();
   }
@@ -255,17 +251,27 @@ export class HighwayPage {
             this.navCtrl.pop();
           }
         }
-      ]
+      ],
+      enableBackdropDismiss: false
     });
     alert.present();
   }
 
-  changePlayer() {
-    this.indexJoueur++;
-    this.playerList.forEach(element => {
-      if (this.playerList.indexOf(element) == this.indexJoueur) {
-        this.joueur = element.name;
+  /*** REDIRECT BUTTONS ***/
+  settings() {
+    this.navCtrl.push(
+      SettingsPage,
+      {
+        param1: this.playerList
+      },
+      {
+        animate: true,
+        animation: "md-transition"
       }
-    });
+    );
+  }
+
+  backPage() {
+    this.navCtrl.pop();
   }
 }
