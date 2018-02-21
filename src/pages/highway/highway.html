@@ -3,13 +3,26 @@
 
 
 <ion-content fullscreen>
-
+  <ion-chip class="joueur">
+    <ion-label>
+      <b>Joueur {{indexJoueur+1}} :</b> {{joueur}}
+    </ion-label>
+  </ion-chip>
   <div class="cards">
-    <img class="card" src={{chosenCard[0]}} (click)="randomCard(0)" />
-    <img class="card" src={{chosenCard[1]}} (click)="randomCard(1)" />
-    <img class="card" src={{chosenCard[2]}} (click)="randomCard(2)" />
-    <img class="card" src={{chosenCard[3]}} (click)="randomCard(3)" />
-    <img class="card" src={{chosenCard[4]}} (click)="randomCard(4)" />
-    <img class="card" src={{chosenCard[5]}} (click)="randomCard(5)" />
+    <img class="card" src="{{this.imgPath}}{{chosenCard[0].name}}.png" />
+    <img class="card" src="{{this.imgPath}}{{chosenCard[1].name}}.png" />
+    <img class="card" src="{{this.imgPath}}{{chosenCard[2].name}}.png" />
+    <img class="card" src="{{this.imgPath}}{{chosenCard[3].name}}.png" />
+    <img class="card" src="{{this.imgPath}}{{chosenCard[4].name}}.png" />
+    <img class="card" src="{{this.imgPath}}{{chosenCard[5].name}}.png" />
   </div>
+  <div class="hiddenCard">
+    <button ion-button round (click)="newCard(1)">+</button>
+    <img src="assets/imgs/cards/back.png" />
+    <button ion-button round (click)="newCard(0)">-</button>
+  </div>
+
+  <h1>
+    <b>Manche {{manche}} </b>
+  </h1>
 </ion-content>
