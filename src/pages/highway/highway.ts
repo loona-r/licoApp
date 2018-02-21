@@ -199,7 +199,8 @@ export class HighwayPage {
         {
           text: "OK",
           handler: data => {
-            this.navCtrl.pop();
+            this.manche++;
+            this.initJeu();
           }
         }
       ]
