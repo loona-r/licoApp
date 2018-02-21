@@ -208,9 +208,10 @@ export class HighwayPage {
   }
 
   alertErreur() {
+    var cartesRestantes = 5 - this.modifIndex;
     let alert = this.alertCtrl.create({
       title: "PERDU",
-      subTitle: "Perdu ! Bois 2 gorgées.",
+      subTitle: "Perdu ! Bois " + cartesRestantes + " gorgées.",
       buttons: [
         {
           text: "ok..",
