@@ -261,7 +261,6 @@ export class HighwayPage {
   }
 
   finJeu() {
-    var cartesRestantes = 5 - this.modifIndex;
     let alert = this.alertCtrl.create({
       title: "FIN DU JEU",
       subTitle: "Le jeu est terminé ! Pour fêter ça tout le monde boit.",
