@@ -130,7 +130,7 @@ export class HighwayPage {
   }
 
   newCard(val) {
-    if (this.modifIndex < 4) {
+    if (this.modifIndex < 5) {
       console.log("MODIFINDEX : " + this.modifIndex);
       console.log(this.chosenCard);
       console.log(this.centerCard);
@@ -139,37 +139,40 @@ export class HighwayPage {
         this.chosenCard[this.modifIndex + 1].name = this.nextCard.name;
         this.chosenCard[this.modifIndex + 1].value = this.nextCard.value;
         this.deleteCard(this.nextCard.name, this.nextCard.value);
-
+        this.centerCard = this.chosenCard[this.modifIndex + 1];
         if (this.nextCard.value <= this.chosenCard[this.modifIndex].value) {
           if (this.manche < 3) {
             console.log("2+ MODIFINDEX : " + this.modifIndex);
             this.alertErreur();
           } else {
-            if (this.indexJoueur + 1 < this.playerList.length)
-              this.finJeuJoueur();
-            else this.finJeu();
+            this.finJeuJoueur();
           }
+        } else {
+          this.modifIndex++;
+          if (this.modifIndex == 5) this.alertWinner();
         }
       } else if (val == 0) {
         this.chosenCard[this.modifIndex + 1].name = this.nextCard.name;
         this.chosenCard[this.modifIndex + 1].value = this.nextCard.value;
         this.deleteCard(this.nextCard.name, this.nextCard.value);
-
+        this.centerCard = this.chosenCard[this.modifIndex + 1];
         if (this.nextCard.value >= this.chosenCard[this.modifIndex].value) {
           if (this.manche < 3) {
             console.log("2- MODIFINDEX : " + this.modifIndex);
             this.alertErreur();
           } else {
-            if (this.indexJoueur + 1 < this.playerList.length)
-              this.finJeuJoueur();
-            else this.finJeu();
+            this.finJeuJoueur();
           }
+        } else {
+          this.modifIndex++;
+          if (this.modifIndex == 5) this.alertWinner();
         }
       }
-      this.modifIndex++;
 
-      this.centerCard = this.chosenCard[this.modifIndex];
+      console.log("MODIFINDEX av: " + this.modifIndex);
     } else {
+      console.log("MODIFINDEX 2323: " + this.modifIndex);
+      this.centerCard = this.chosenCard[this.modifIndex];
       this.alertWinner();
     }
   }
@@ -181,19 +184,32 @@ export class HighwayPage {
         this.joueur = element.name;
       }
     });
+    let alert = this.alertCtrl.create({
+      title: "Changement joueur",
+      subTitle: this.joueur + " à toi de jouer !",
+      buttons: [
+        {
+          text: "OK",
+          handler: data => {}
+        }
+      ],
+      enableBackdropDismiss: false
+    });
+    alert.present();
   }
 
   /*** ALERTES ***/
   alertWinner() {
     let alert = this.alertCtrl.create({
-      title: "FELICITATIONS JOUEUR " + this.joueur + " !!",
+      title: "FELICITATIONS " + this.joueur + " !!",
       subTitle: "Tu peux distribuer 6 gorgées",
       buttons: [
         {
           text: "OK",
           handler: data => {
-            this.manche++;
+            this.changePlayer();
             this.initJeu();
+            this.manche = 1;
           }
         }
       ],
@@ -229,9 +245,13 @@ export class HighwayPage {
         {
           text: "ok..",
           handler: data => {
-            this.changePlayer();
-            this.initJeu();
-            this.manche = 1;
+            if (this.indexJoueur + 1 >= this.playerList.length) {
+              this.finJeu();
+            } else {
+              this.changePlayer();
+              this.initJeu();
+              this.manche = 1;
+            }
           }
         }
       ],
@@ -241,9 +261,10 @@ export class HighwayPage {
   }
 
   finJeu() {
+    var cartesRestantes = 5 - this.modifIndex;
     let alert = this.alertCtrl.create({
       title: "FIN DU JEU",
-      subTitle: "Pour fêter ca on boit tous",
+      subTitle: "Le jeu est terminé ! Pour fêter ça tout le monde boit.",
       buttons: [
         {
           text: "Ouaaaais",
