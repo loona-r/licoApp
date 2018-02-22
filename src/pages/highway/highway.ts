@@ -207,9 +207,13 @@ export class HighwayPage {
         {
           text: "OK",
           handler: data => {
-            this.changePlayer();
-            this.initJeu();
-            this.manche = 1;
+            if (this.indexJoueur + 1 >= this.playerList.length) {
+              this.finJeu();
+            } else {
+              this.changePlayer();
+              this.initJeu();
+              this.manche = 1;
+            }
           }
         }
       ],
