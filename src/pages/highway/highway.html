@@ -16,15 +16,19 @@
       <img class="card" *ngIf="centerCard != chosenCard[3]; else back" src="{{this.imgPath}}{{chosenCard[3].name}}.png" />
       <img class="card" *ngIf="centerCard != chosenCard[4]; else back" src="{{this.imgPath}}{{chosenCard[4].name}}.png" />
       <img class="card" *ngIf="centerCard != chosenCard[5]; else back" src="{{this.imgPath}}{{chosenCard[5].name}}.png" />
-      <ng-template #back>
-        <img class="card" src="{{this.imgPath}}select.png" />
-      </ng-template>
     </div>
-    <div class="hiddenCard">
-      <button ion-button round class="bouton" (click)="newCard(0)">-</button>
-      <img src="{{this.imgPath}}{{centerCard.name}}.png" />
-      <button ion-button round class="bouton" (click)="newCard(1)">+</button>
-    </div>
+    <ng-template #back>
+      <img class="card" src="{{this.imgPath}}select.png" />
+    </ng-template>
+  </div>
+  <div class="bouton1">
+    <button ion-button round (click)="newCard(1)">+</button>
+  </div>
+  <div class="hiddenCard">
+    <img src="{{this.imgPath}}{{centerCard.name}}.png" />
+  </div>
+  <div class="bouton2">
+    <button ion-button round (click)="newCard(0)">-</button>
   </div>
   <div class="manche">
     <b>Manche {{manche}} </b>

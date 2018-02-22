@@ -29,7 +29,7 @@ export class BetSumPage {
     this.joueur = this.playerList[1].name;
     this.randomNumber();
     this.index = 0;
-    this.choosePlayer();
+    this.changePlayer();
     this.somme = 0;
   }
 
@@ -73,7 +73,7 @@ export class BetSumPage {
             this.somme = this.somme + this.aleaNumber;
             this.randomNumber();
             this.index++;
-            this.choosePlayer();
+            this.changePlayer();
           }
         }
       ]
@@ -81,7 +81,7 @@ export class BetSumPage {
     alert.present();
   }
 
-  choosePlayer() {
+  changePlayer() {
     if (this.index < this.playerList.length) {
       this.playerList.forEach(element => {
         if (this.playerList.indexOf(element) == this.index) {
@@ -106,12 +106,14 @@ export class BetSumPage {
                       this.backPage();
                     }
                   }
-                ]
+                ],
+                enableBackdropDismiss: false
               });
               alert.present();
             }
           }
-        ]
+        ],
+        enableBackdropDismiss: false
       });
       alert.present();
     }

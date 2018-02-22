@@ -8,14 +8,14 @@
     </ion-chip>
     <img class="settings" src="assets/imgs/settings_dark.png" (click)="settings()">
   </div>
-  <ion-slides>
-
-    <ion-slide on-swipe="randomNumber()">
-      <p class="number" (click)="onClick()">
-        <img class="swipe" src="assets/imgs/swipe_l.png"> {{aleaNumber}}
-        <img class="swipe" src="assets/imgs/swipe_r.png">
-      </p>
-    </ion-slide>
-  </ion-slides>
-
+  <div>
+    <ion-slides>
+      <ion-slide on-swipe="randomNumber()">
+        <p class="number" (click)="onClick()">
+          <img class="swipe" src="assets/imgs/swipe_l.png"> {{aleaNumber}}
+          <img class="swipe" src="assets/imgs/swipe_r.png">
+        </p>
+      </ion-slide>
+    </ion-slides>
+  </div>
 </ion-content>

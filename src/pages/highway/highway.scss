@@ -23,6 +23,7 @@ page-highway {
     display: inline-block;
     margin-left: 3%;
     margin-right: auto;
+    margin-top: 20%;
   }
 
   .card {
@@ -30,15 +31,22 @@ page-highway {
   }
 
   .hiddenCard {
-    margin-top: 20%;
     width: 100%;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
   }
 
-  .bouton {
-    margin-bottom: 50%;
+  .bouton1 {
+    margin-top: 20%;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .bouton2 {
+    margin-bottom: 20%;
+    text-align: center;
+    margin-top: 10px;
   }
 
   .manche {
