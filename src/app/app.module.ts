@@ -12,6 +12,11 @@ import { PicoloPage } from "../pages/picolo/picolo";
 import { HighwayPage } from "../pages/highway/highway";
 import { BetSumPage } from "../pages/bet-sum/bet-sum";
 import { SelfDrawPage } from "../pages/self-draw/self-draw";
+import { firebaseConfig } from "../environnement";
+
+import { AngularFireModule } from "angularfire2";
+import { AngularFireDatabaseModule } from "angularfire2/database";
+import { AngularFireAuthModule } from "angularfire2/auth";
 
 @NgModule({
   declarations: [
@@ -24,7 +29,13 @@ import { SelfDrawPage } from "../pages/self-draw/self-draw";
     BetSumPage,
     SelfDrawPage
   ],
-  imports: [BrowserModule, IonicModule.forRoot(MyApp)],
+  imports: [
+    BrowserModule,
+    IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireDatabaseModule, // imports firebase/firestore, only needed for database features
+    AngularFireAuthModule // imports firebase/auth, only needed for auth features,
+  ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,

@@ -1,7 +1,17 @@
-<img class="settings" src="assets/imgs/settings_dark.png" (click)="settings()">
-<img class="back" src="assets/imgs/chevron_dark.png" (click)="backPage()">
+<ion-content fullscreen>
+  <div class="head">
+    <img class="back" src="assets/imgs/chevron_dark.png" (click)="backPage()">
+    <ion-chip>
+      <ion-label>
+        <b>{{mode}}</b>
+      </ion-label>
+    </ion-chip>
+    <img class="settings" src="assets/imgs/settings_dark.png" (click)="settings()">
+  </div>
+  <ion-card>
+    {{defi}}
+  </ion-card>
 
+  <button class="bouton" ion-button block color="primary" (click)="nouveauTour()">Santé !</button>
 
-<ion-header color="primary">
-  <img class="lico" src="assets/imgs/licorne.png">
-</ion-header>
+</ion-content>

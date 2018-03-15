@@ -1,28 +1,26 @@
 page-picolo {
   .settings {
     float: right;
-    margin-top: 2%;
-    margin-right: 2%;
-    position: relative;
-    z-index: 2;
   }
   .back {
     float: left;
+  }
+
+  .head {
+    color: #644d59;
+    text-align: center;
+    font-size: 25px;
     margin-top: 2%;
-    margin-left: 2%;
-    position: relative;
-    z-index: 2;
+    margin-left: auto;
+    margin-right: auto;
   }
   .header::after {
     background-image: none;
   }
 
-  .lico {
-    width: 55%;
-    margin-top: 12%;
-    margin-left: 22%;
-    margin-right: 22%;
-    position: absolute;
-    z-index: 1;
+  .bouton {
+    margin-top: 50px;
+    text-align: center;
+    margin-bottom: 10px;
   }
 }

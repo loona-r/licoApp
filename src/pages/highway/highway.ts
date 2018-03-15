@@ -201,7 +201,7 @@ export class HighwayPage {
   /*** ALERTES ***/
   alertWinner() {
     let alert = this.alertCtrl.create({
-      title: "FELICITATIONS " + this.joueur + " !!",
+      title: "Féliciations " + this.joueur + " !!",
       subTitle: "Tu peux distribuer 6 gorgées",
       buttons: [
         {
