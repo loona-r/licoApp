@@ -3,6 +3,7 @@ import { NavController, NavParams } from "ionic-angular";
 import { SettingsPage } from "../settings/settings";
 import { Observable } from "rxjs/Observable";
 import { AngularFireDatabase } from "angularfire2/database";
+import { ScreenOrientation } from "@ionic-native/screen-orientation";
 
 /**
  * Generated class for the PicoloPage page.
@@ -24,6 +25,7 @@ export class PicoloPage {
   dilemme: string;
 
   constructor(
+    private screenOrientation: ScreenOrientation,
     public db: AngularFireDatabase,
     public navCtrl: NavController,
     public navParams: NavParams
@@ -35,6 +37,7 @@ export class PicoloPage {
     this.dilemme = "";
     this.theme = "";
     this.nouveauTour();
+    this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE);
   }
 
   nouveauTour() {
@@ -111,6 +114,7 @@ export class PicoloPage {
   }
 
   settings() {
+    this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
     this.navCtrl.push(
       SettingsPage,
       {
@@ -124,6 +128,7 @@ export class PicoloPage {
   }
 
   backPage() {
+    this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
     this.navCtrl.pop();
   }
 }

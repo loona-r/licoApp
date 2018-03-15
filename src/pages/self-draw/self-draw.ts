@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { NavController, NavParams } from "ionic-angular";
 import { SettingsPage } from "../settings/settings";
+import { ScreenOrientation } from "@ionic-native/screen-orientation";
 
 /**
  * Generated class for the SelfDrawPage page.
@@ -15,7 +16,12 @@ import { SettingsPage } from "../settings/settings";
 })
 export class SelfDrawPage {
   playerList: Array<{ id: number; name: string }>;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public screenOrientation: ScreenOrientation
+  ) {
+    this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
     this.playerList = navParams.get("param1");
   }
 

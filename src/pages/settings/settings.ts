@@ -1,6 +1,9 @@
 import { Component } from "@angular/core";
 import { NavController, NavParams } from "ionic-angular";
 import { AlertController } from "ionic-angular/components/alert/alert-controller";
+import { ScreenOrientation } from "@ionic-native/screen-orientation";
+import { PicoloPage } from "../picolo/picolo";
+import { Page } from "ionic-angular/navigation/nav-util";
 
 @Component({
   selector: "page-settings",
@@ -8,15 +11,23 @@ import { AlertController } from "ionic-angular/components/alert/alert-controller
 })
 export class SettingsPage {
   playerList: Array<{ id: number; name: string }>;
+  lastPage: string;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public alertCtrl: AlertController
+    public alertCtrl: AlertController,
+    public screenOrientation: ScreenOrientation
   ) {
+    this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
     this.playerList = navParams.get("param1");
+    this.lastPage = this.navCtrl.last().component.name;
   }
 
   backPage() {
+    if (this.lastPage == "PicoloPage")
+      this.screenOrientation.lock(
+        this.screenOrientation.ORIENTATIONS.LANDSCAPE
+      );
     this.navCtrl.pop({ animate: false });
   }
 
@@ -27,7 +38,7 @@ export class SettingsPage {
         count++;
       }
     });
-    console.log("count" + count);
+    //console.log("count" + count);
     if (
       count == this.playerList.length ||
       (this.playerList.length == 2 && count == 1)

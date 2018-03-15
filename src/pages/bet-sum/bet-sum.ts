@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { NavController, NavParams } from "ionic-angular";
 import { SettingsPage } from "../settings/settings";
 import { AlertController } from "ionic-angular/components/alert/alert-controller";
+import { ScreenOrientation } from "@ionic-native/screen-orientation";
 
 /**
  * Generated class for the BetSumPage page.
@@ -21,10 +22,12 @@ export class BetSumPage {
   joueur: string;
   somme: number;
   constructor(
+    public screenOrientation: ScreenOrientation,
     public navCtrl: NavController,
     public navParams: NavParams,
     public alertCtrl: AlertController
   ) {
+    this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
     this.playerList = navParams.get("param1");
     this.joueur = this.playerList[1].name;
     this.randomNumber();

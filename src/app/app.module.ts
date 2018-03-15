@@ -17,6 +17,7 @@ import { firebaseConfig } from "../environnement";
 import { AngularFireModule } from "angularfire2";
 import { AngularFireDatabaseModule } from "angularfire2/database";
 import { AngularFireAuthModule } from "angularfire2/auth";
+import { ScreenOrientation } from "@ionic-native/screen-orientation";
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { AngularFireAuthModule } from "angularfire2/auth";
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: ErrorHandler, useClass: IonicErrorHandler }
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    ScreenOrientation
   ]
 })
 export class AppModule {}

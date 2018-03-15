@@ -3,6 +3,7 @@ import { NavController, NavParams } from "ionic-angular";
 import { MenuPage } from "../menu/menu";
 import { SettingsPage } from "../settings/settings";
 import { ToastController } from "ionic-angular/components/toast/toast-controller";
+import { ScreenOrientation } from "@ionic-native/screen-orientation";
 
 @Component({
   selector: "page-home",
@@ -14,8 +15,10 @@ export class HomePage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public toastCtrl: ToastController
+    public toastCtrl: ToastController,
+    public screenOrientation: ScreenOrientation
   ) {
+    this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
     this.playerList = [{ id: 1, name: "" }, { id: 2, name: "" }];
   }
 
