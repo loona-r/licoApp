@@ -39,19 +39,20 @@ export class PrankPhonePage {
     platform.ready().then(() => {
       platform.registerBackButtonAction(() => this.backPage());
     });
+
+    this.dataProvider.getWordList().subscribe(data => {
+      this.wordListLength = data.length;
+      this.wordList = data;
+      console.log(
+        "ma word liste : " + this.wordList + "taille:" + this.wordListLength
+      );
+      this.randomWord();
+    });
     this.playerList = navParams.get("param1");
     this.joueur = this.playerList[0].name;
     this.indexJoueur = 0;
     this.chosenContact = {};
     this.randomContact();
-  }
-  ionViewDidEnter() {
-    this.dataProvider.getWordList().subscribe(data => {
-      this.wordListLength = data.length;
-      this.wordList = data;
-      console.log("ma word liste : " + this.wordList);
-      this.randomWord();
-    });
   }
   contactList = [];
 
@@ -71,9 +72,15 @@ export class PrankPhonePage {
   }
 
   changePlayer() {
-    if (this.indexJoueur == this.playerList.length) this.indexJoueur = 0;
-    this.joueur = this.playerList[this.indexJoueur].name;
     this.indexJoueur++;
+    if (this.indexJoueur == this.playerList.length) this.indexJoueur = 0;
+    console.log(
+      "ancien joueur : " + this.joueur + " index : " + this.indexJoueur
+    );
+    this.joueur = this.playerList[this.indexJoueur].name;
+    console.log(
+      "nouveau joueur : " + this.joueur + " index : " + this.indexJoueur
+    );
   }
 
   randomContact(): void {

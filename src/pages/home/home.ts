@@ -66,7 +66,10 @@ export class HomePage {
 
   addPlayer() {
     if (this.playerList.length < 10) {
-      this.playerList.push({ id: this.playerList.length + 1, name: "" });
+      this.playerList.push({
+        id: this.playerList.length + 1,
+        name: ""
+      });
       console.log(this.playerList);
     }
   }

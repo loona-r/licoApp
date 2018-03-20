@@ -16,25 +16,26 @@ export class DataProvider {
   }
 
   getWordList(): Observable<any> {
-    if (this.wordData.length == 0) {
-      return Observable.fromPromise(this.stor.get("wordData")).mergeMap(
-        (val: any) => {
-          if (val == null) {
-            return this.http
-              .get("https://lico-prankphone.firebaseio.com/PrankPhone.json")
-              .pipe(
-                tap(res => {
-                  this.wordData = res;
-                })
-              );
-          } else {
-            this.wordData = val;
-            return of({ word: this.wordData });
-          }
+    console.log("GETWORDLIST" + this.wordData);
+    console.log("IF DATA" + this.wordData);
+    return Observable.fromPromise(this.stor.get("wordData")).mergeMap(
+      (val: any) => {
+        if (val == null) {
+          return this.http
+            .get("https://lico-prankphone.firebaseio.com/PrankPhone.json")
+            .pipe(
+              tap(res => {
+                this.wordData = res;
+
+                console.log("IF IF DATA");
+              })
+            );
+        } else {
+          console.log("IF ELSE DATA");
+          this.wordData = val;
+          return of({ word: this.wordData });
         }
-      );
-    } else {
-      return of({ word: this.wordData });
-    }
+      }
+    );
   }
 }

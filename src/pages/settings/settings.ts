@@ -26,10 +26,11 @@ export class SettingsPage {
   }
 
   backPage() {
-    if (this.lastPage == "PicoloPage")
+    if (this.lastPage == "PicoloPage") {
       this.screenOrientation.lock(
         this.screenOrientation.ORIENTATIONS.LANDSCAPE
       );
+    }
     this.navCtrl.pop({ animate: false });
   }
 
