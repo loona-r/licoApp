@@ -1,22 +1,22 @@
 <ion-content fullscreen>
   <div class="head">
     <img class="back" src="assets/imgs/chevron_dark.png" (click)="backPage()">
-    <ion-chip>
-      <ion-label>
-        {{joueur}}
-      </ion-label>
-    </ion-chip>
+
     <img class="settings" src="assets/imgs/settings_dark.png" (click)="settings()">
   </div>
 
-  <ion-list>
-    <ion-item *ngFor="let contact of contactList">
-      <ion-avatar *ngIf=" contact.image " item-start>
-        <img [src]="contact.image ">
-      </ion-avatar>
-      {{contact.name}}
-      <p>{{contact.number}}</p>
-    </ion-item>
-  </ion-list>
+  <div class="macarte">
+    <h1>{{joueur}}</h1>
+    <p class="appel">
+      Tu dois appeler...
+    </p>
+    <h1>{{contactChosen.name}}</h1>
+    <i>{{contactChosen.number}}</i>
 
+  </div>
+
+  <div class="mesboutons">
+    <button ion-button round (click)="jeBoisAlert()">JE BOIS ! </button>
+    <button ion-button round (click)="appelAlert()">APPELER </button>
+  </div>
 </ion-content>

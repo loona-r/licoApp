@@ -20,6 +20,7 @@ import { AngularFireDatabaseModule } from "angularfire2/database";
 import { AngularFireAuthModule } from "angularfire2/auth";
 import { ScreenOrientation } from "@ionic-native/screen-orientation";
 import { Contacts } from "@ionic-native/contacts";
+import { CallNumber } from "@ionic-native/call-number";
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { Contacts } from "@ionic-native/contacts";
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     ScreenOrientation,
-    Contacts
+    Contacts,
+    CallNumber
   ]
 })
 export class AppModule {}
