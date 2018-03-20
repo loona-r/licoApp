@@ -34,6 +34,7 @@ export class PicoloPage {
     platform.ready().then(() => {
       platform.registerBackButtonAction(() => this.backPage());
     });
+
     this.playerList = navParams.get("param1");
     this.items = db.list("/").valueChanges();
     this.mode = "";

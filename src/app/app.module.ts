@@ -21,6 +21,9 @@ import { AngularFireAuthModule } from "angularfire2/auth";
 import { ScreenOrientation } from "@ionic-native/screen-orientation";
 import { Contacts } from "@ionic-native/contacts";
 import { CallNumber } from "@ionic-native/call-number";
+import { HttpClientModule } from "@angular/common/http";
+import { IonicStorageModule } from "@ionic/storage";
+import { DataProvider } from "../providers/data/data";
 
 @NgModule({
   declarations: [
@@ -34,8 +37,10 @@ import { CallNumber } from "@ionic-native/call-number";
     PrankPhonePage
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot(),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule // imports firebase/auth, only needed for auth features,
@@ -57,7 +62,8 @@ import { CallNumber } from "@ionic-native/call-number";
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     ScreenOrientation,
     Contacts,
-    CallNumber
+    CallNumber,
+    DataProvider
   ]
 })
 export class AppModule {}

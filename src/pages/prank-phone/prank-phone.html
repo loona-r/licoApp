@@ -10,13 +10,16 @@
     <p class="appel">
       Tu dois appeler...
     </p>
-    <h1>{{contactChosen.name}}</h1>
-    <i>{{contactChosen.number}}</i>
-
+    <!-- <h1>{{chosenContact.name}}</h1> -->
+    <!-- <i>{{chosenContact.number}}</i> -->
+    <p class="appel">
+      en utilisant le mot...
+    </p>
+    <h1>{{chosenWord}}</h1>
   </div>
 
   <div class="mesboutons">
-    <button ion-button round (click)="jeBoisAlert()">JE BOIS ! </button>
-    <button ion-button round (click)="appelAlert()">APPELER </button>
+    <button ion-button large (click)="jeBoisAlert()">JE BOIS ! </button>
+    <button ion-button large (click)="appelAlert()">APPELER </button>
   </div>
 </ion-content>

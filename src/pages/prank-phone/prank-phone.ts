@@ -1,9 +1,16 @@
 import { Component } from "@angular/core";
-import { NavController, NavParams, AlertController } from "ionic-angular";
+import {
+  NavController,
+  NavParams,
+  AlertController,
+  Platform
+} from "ionic-angular";
 import { DomSanitizer } from "@angular/platform-browser";
 import { Contacts } from "@ionic-native/contacts";
 import { SettingsPage } from "../settings/settings";
 import { CallNumber } from "@ionic-native/call-number";
+import { AngularFireDatabase } from "angularfire2/database";
+import { DataProvider } from "../../providers/data/data";
 
 @Component({
   selector: "page-prank-phone",
@@ -12,33 +19,55 @@ import { CallNumber } from "@ionic-native/call-number";
 export class PrankPhonePage {
   playerList: Array<{ id: number; name: string }>;
   joueur: string;
-  contactChosen: any;
+  chosenContact: any;
   indexJoueur: number;
+  wordList: any;
+  chosenWord: string;
+  wordListLength;
 
   constructor(
+    public platform: Platform,
     public alertCtrl: AlertController,
     private callNumber: CallNumber,
+    public db: AngularFireDatabase,
     private contacts: Contacts,
     private sanitizer: DomSanitizer,
     public navCtrl: NavController,
-    public navParams: NavParams
+    public navParams: NavParams,
+    public dataProvider: DataProvider
   ) {
+    platform.ready().then(() => {
+      platform.registerBackButtonAction(() => this.backPage());
+    });
     this.playerList = navParams.get("param1");
     this.joueur = this.playerList[0].name;
     this.indexJoueur = 0;
-    this.contactChosen = {};
+    this.chosenContact = {};
     this.randomContact();
   }
-
+  ionViewDidEnter() {
+    this.dataProvider.getWordList().subscribe(data => {
+      this.wordListLength = data.length;
+      this.wordList = data;
+      console.log("ma word liste : " + this.wordList);
+      this.randomWord();
+    });
+  }
   contactList = [];
+
+  randomWord() {
+    var i = Math.floor(Math.random() * this.wordListLength);
+    this.chosenWord = this.wordList[i];
+  }
 
   random() {
     this.changePlayer();
     this.randomContact();
+    this.randomWord();
   }
 
   appel() {
-    this.callNumber.callNumber("#31#" + this.contactChosen.number, true);
+    this.callNumber.callNumber("#31#" + this.chosenContact.number, true);
   }
 
   changePlayer() {
@@ -56,16 +85,16 @@ export class PrankPhonePage {
       .then(contacts => {
         var i = Math.floor(Math.random() * contacts.length);
         if (contacts[i].displayName !== null) {
-          this.contactChosen["name"] = contacts[i].displayName;
-          this.contactChosen["number"] = contacts[i].phoneNumbers[0].value;
+          this.chosenContact["name"] = contacts[i].displayName;
+          this.chosenContact["number"] = contacts[i].phoneNumbers[0].value;
           if (contacts[i].photos != null) {
             console.log(contacts[i].photos);
-            this.contactChosen["image"] = this.sanitizer.bypassSecurityTrustUrl(
+            this.chosenContact["image"] = this.sanitizer.bypassSecurityTrustUrl(
               contacts[i].photos[0].value
             );
-            console.log(this.contactChosen);
+            console.log(this.chosenContact);
           } else {
-            this.contactChosen["image"] = "assets/imgs/licorne.png";
+            this.chosenContact["image"] = "assets/imgs/licorne.png";
           }
         }
       });
