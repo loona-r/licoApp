@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { NavController, NavParams } from "ionic-angular";
+import { NavController, NavParams, Platform } from "ionic-angular";
 import { SettingsPage } from "../settings/settings";
 import { Observable } from "rxjs/Observable";
 import { AngularFireDatabase } from "angularfire2/database";
@@ -25,11 +25,15 @@ export class PicoloPage {
   dilemme: string;
 
   constructor(
+    public platform: Platform,
     private screenOrientation: ScreenOrientation,
     public db: AngularFireDatabase,
     public navCtrl: NavController,
     public navParams: NavParams
   ) {
+    platform.ready().then(() => {
+      platform.registerBackButtonAction(() => this.backPage());
+    });
     this.playerList = navParams.get("param1");
     this.items = db.list("/").valueChanges();
     this.mode = "";
@@ -48,19 +52,16 @@ export class PicoloPage {
   changeMode() {
     var i = Math.floor(Math.random() * 200);
     if (i < 100) this.mode = "Divers";
-    if (i >= 100 && i < 150) this.mode = "Jeu";
-    if (i >= 150 && i < 200) this.mode = "Caliente";
-    console.log("NOUVEAU MODE : " + this.mode);
+    if (i >= 100 && i < 190) this.mode = "Jeu";
+    if (i >= 190 && i < 200) this.mode = "Caliente";
   }
 
   dilemmeAlea(itemData) {
-    console.log("JE SUIS DANS LE ITEMDATA");
     var i = Math.floor(Math.random() * itemData.Jeu.Dilemme.length);
     this.dilemme = itemData.Jeu.Dilemme[i];
   }
 
   themeAlea(itemData) {
-    console.log("JE SUIS DANS LE ITEMDATA");
     var i = Math.floor(Math.random() * itemData.Jeu.Theme.length);
     this.theme = itemData.Jeu.Theme[i];
   }
@@ -75,6 +76,7 @@ export class PicoloPage {
   }
 
   defiAleat() {
+    var joueur1, joueur2;
     this.items.forEach(item => {
       item.forEach(itemData => {
         if (this.mode == "Divers") {
@@ -94,20 +96,22 @@ export class PicoloPage {
           );
         }
         this.defi = this.defi.replace("%X%", this.gorgeesAleat());
-        this.defi = this.defi.replace("%P%", this.joueurAleat());
-        this.defi = this.defi.replace("%P%", this.joueurAleat());
+        joueur1 = this.joueurAleat();
+        do {
+          joueur2 = this.joueurAleat();
+        } while (joueur1 == joueur2);
+        this.defi = this.defi.replace("%P%", joueur1);
+        this.defi = this.defi.replace("%P2%", joueur2);
 
         if (this.defi.includes("DILEMME")) {
-          console.log("ITEM DATA : " + itemData);
+          this.mode = "Dilemme";
           this.dilemmeAlea(itemData);
           this.defi = this.defi.replace("DILEMME", this.dilemme);
-          console.log("INCLUDES DILEMME : " + this.dilemme);
         }
         if (this.defi.includes("THEME")) {
-          console.log("ITEM DATA : " + itemData);
+          this.mode = "Theme";
           this.themeAlea(itemData);
           this.defi = this.defi.replace("THEME", this.theme);
-          console.log("INCLUDES THEME : " + this.defi);
         }
       });
     });

@@ -11,13 +11,15 @@ import { SettingsPage } from "../pages/settings/settings";
 import { PicoloPage } from "../pages/picolo/picolo";
 import { HighwayPage } from "../pages/highway/highway";
 import { BetSumPage } from "../pages/bet-sum/bet-sum";
-import { SelfDrawPage } from "../pages/self-draw/self-draw";
+
+import { PrankPhonePage } from "../pages/prank-phone/prank-phone";
 import { firebaseConfig } from "../environnement";
 
 import { AngularFireModule } from "angularfire2";
 import { AngularFireDatabaseModule } from "angularfire2/database";
 import { AngularFireAuthModule } from "angularfire2/auth";
 import { ScreenOrientation } from "@ionic-native/screen-orientation";
+import { Contacts } from "@ionic-native/contacts";
 
 @NgModule({
   declarations: [
@@ -28,7 +30,7 @@ import { ScreenOrientation } from "@ionic-native/screen-orientation";
     PicoloPage,
     HighwayPage,
     BetSumPage,
-    SelfDrawPage
+    PrankPhonePage
   ],
   imports: [
     BrowserModule,
@@ -46,13 +48,14 @@ import { ScreenOrientation } from "@ionic-native/screen-orientation";
     PicoloPage,
     HighwayPage,
     BetSumPage,
-    SelfDrawPage
+    PrankPhonePage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    ScreenOrientation
+    ScreenOrientation,
+    Contacts
   ]
 })
 export class AppModule {}

@@ -2,10 +2,10 @@ import { Component } from "@angular/core";
 import { NavController, NavParams } from "ionic-angular";
 import { SettingsPage } from "../settings/settings";
 import { AlertController } from "ionic-angular/components/alert/alert-controller";
-import { SelfDrawPage } from "../self-draw/self-draw";
 import { BetSumPage } from "../bet-sum/bet-sum";
 import { PicoloPage } from "../picolo/picolo";
 import { HighwayPage } from "../highway/highway";
+import { PrankPhonePage } from "../prank-phone/prank-phone";
 
 @Component({
   selector: "page-menu",
@@ -118,11 +118,11 @@ export class MenuPage {
     alert.present();
   }
 
-  selfDrawInfo() {
+  prankPhoneInfo() {
     let alert = this.alertCtrl.create({
-      title: "Self Draw",
+      title: "Prank Phone",
       subTitle:
-        "Chaque joueur prend un selfie depuis l'application, dessine dessus, puis l'enregistre. À la fin, chaque selfie est affiché, et chaque joueur vote au tour à tour pour le plus amusant. Finalement, le joueur ayant reçu le plus de vote doit boire (et comme c'est un jeu plutôt long, cul sec !)",
+        "L'application propose aléatoirement un contact du téléphone, et un défi à réaliser par un joueur.",
       buttons: [
         {
           text: "Annuler",
@@ -134,7 +134,7 @@ export class MenuPage {
         {
           text: "Jouer",
           handler: data => {
-            this.navCtrl.push(SelfDrawPage, {
+            this.navCtrl.push(PrankPhonePage, {
               param1: this.playerList
             });
           }

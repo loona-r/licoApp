@@ -1,0 +1,22 @@
+<ion-content fullscreen>
+  <div class="head">
+    <img class="back" src="assets/imgs/chevron_dark.png" (click)="backPage()">
+    <ion-chip>
+      <ion-label>
+        {{joueur}}
+      </ion-label>
+    </ion-chip>
+    <img class="settings" src="assets/imgs/settings_dark.png" (click)="settings()">
+  </div>
+
+  <ion-list>
+    <ion-item *ngFor="let contact of contactList">
+      <ion-avatar *ngIf=" contact.image " item-start>
+        <img [src]="contact.image ">
+      </ion-avatar>
+      {{contact.name}}
+      <p>{{contact.number}}</p>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
