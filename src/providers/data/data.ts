@@ -25,15 +25,15 @@ export class DataProvider {
             .get("https://lico-prankphone.firebaseio.com/PrankPhone.json")
             .pipe(
               tap(res => {
-                this.wordData = res;
+                this.wordData = res.Mots;
 
                 console.log("IF IF DATA");
               })
             );
         } else {
           console.log("IF ELSE DATA");
-          this.wordData = val;
-          return of({ word: this.wordData });
+          this.wordData = val.Mots;
+          return of({ Mots: this.wordData });
         }
       }
     );

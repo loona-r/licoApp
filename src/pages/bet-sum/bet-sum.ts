@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { NavController, NavParams } from "ionic-angular";
+import { NavController, NavParams, Platform } from "ionic-angular";
 import { SettingsPage } from "../settings/settings";
 import { AlertController } from "ionic-angular/components/alert/alert-controller";
 import { ScreenOrientation } from "@ionic-native/screen-orientation";
@@ -25,8 +25,12 @@ export class BetSumPage {
     public screenOrientation: ScreenOrientation,
     public navCtrl: NavController,
     public navParams: NavParams,
-    public alertCtrl: AlertController
+    public alertCtrl: AlertController,
+    public platform: Platform
   ) {
+    platform.ready().then(() => {
+      platform.registerBackButtonAction(() => this.backPage());
+    });
     this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
     this.playerList = navParams.get("param1");
     this.joueur = this.playerList[1].name;
@@ -79,7 +83,8 @@ export class BetSumPage {
             this.changePlayer();
           }
         }
-      ]
+      ],
+      enableBackdropDismiss: false
     });
     alert.present();
   }

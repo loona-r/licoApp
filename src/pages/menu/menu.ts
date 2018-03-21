@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { NavController, NavParams } from "ionic-angular";
+import { NavController, NavParams, Platform } from "ionic-angular";
 import { SettingsPage } from "../settings/settings";
 import { AlertController } from "ionic-angular/components/alert/alert-controller";
 import { BetSumPage } from "../bet-sum/bet-sum";
@@ -16,8 +16,12 @@ export class MenuPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public alertCtrl: AlertController
+    public alertCtrl: AlertController,
+    public platform: Platform
   ) {
+    platform.ready().then(() => {
+      platform.registerBackButtonAction(() => this.backPage());
+    });
     this.playerList = navParams.get("param1").filter(function(x) {
       return x.name != "";
     });
@@ -61,7 +65,8 @@ export class MenuPage {
             });
           }
         }
-      ]
+      ],
+      enableBackdropDismiss: false
     });
     alert.present();
   }

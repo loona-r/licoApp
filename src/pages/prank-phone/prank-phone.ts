@@ -41,8 +41,8 @@ export class PrankPhonePage {
     });
 
     this.dataProvider.getWordList().subscribe(data => {
-      this.wordListLength = data.length;
-      this.wordList = data;
+      this.wordListLength = data.Mots.length;
+      this.wordList = data.Mots;
       console.log(
         "ma word liste : " + this.wordList + "taille:" + this.wordListLength
       );
@@ -113,14 +113,14 @@ export class PrankPhonePage {
       subTitle: "Veux-tu vraiment passer ce défi ? Dans ce cas bois 5 gorgées.",
       buttons: [
         {
+          text: "Non",
+          role: "cancel"
+        },
+        {
           text: "SANTE !",
           handler: data => {
             this.random();
           }
-        },
-        {
-          text: "Non",
-          role: "cancel"
         }
       ],
       enableBackdropDismiss: false
@@ -134,15 +134,32 @@ export class PrankPhonePage {
       subTitle: "Veux-tu vraiment appeler cette personne ?",
       buttons: [
         {
+          text: "Non",
+          role: "cancel"
+        },
+        {
           text: "Oui j'appelle !",
           handler: data => {
             this.appel();
+            this.congratsAlert();
+          }
+        }
+      ],
+      enableBackdropDismiss: false
+    });
+    alert.present();
+  }
+
+  congratsAlert() {
+    let alert = this.alertCtrl.create({
+      title: "Félicitations ! ",
+      subTitle: "Tu as relevé le défi, tu as le droit de distribuer 5 gorgées.",
+      buttons: [
+        {
+          text: "Merciiii",
+          handler: data => {
             this.random();
           }
-        },
-        {
-          text: "Non",
-          role: "cancel"
         }
       ],
       enableBackdropDismiss: false
