@@ -52,10 +52,7 @@ export class MenuPage {
       buttons: [
         {
           text: "Annuler",
-          role: "cancel",
-          handler: data => {
-            console.log("Cancel clicked");
-          }
+          role: "cancel"
         },
         {
           text: "Jouer",
@@ -79,10 +76,7 @@ export class MenuPage {
       buttons: [
         {
           text: "Annuler",
-          role: "cancel",
-          handler: data => {
-            console.log("Cancel clicked");
-          }
+          role: "cancel"
         },
         {
           text: "Jouer",
@@ -105,10 +99,7 @@ export class MenuPage {
       buttons: [
         {
           text: "Annuler",
-          role: "cancel",
-          handler: data => {
-            console.log("Cancel clicked");
-          }
+          role: "cancel"
         },
         {
           text: "Jouer",
@@ -131,10 +122,7 @@ export class MenuPage {
       buttons: [
         {
           text: "Annuler",
-          role: "cancel",
-          handler: data => {
-            console.log("Cancel clicked");
-          }
+          role: "cancel"
         },
         {
           text: "Jouer",

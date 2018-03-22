@@ -23,8 +23,6 @@ export class HomePage {
   }
 
   submit() {
-    console.log(this.playerList);
-    console.log("length" + this.playerList.length);
     if (this.playerList.length >= 2 && this.countEmptyPlayer()) {
       this.deleteEmptyPlayer();
       this.navCtrl.push(
@@ -44,13 +42,8 @@ export class HomePage {
         position: "bottom"
       });
 
-      toast.onDidDismiss(() => {
-        console.log("Dismissed toast");
-      });
-
       toast.present();
     }
-    console.log(this.playerList);
   }
 
   settings() {
@@ -70,14 +63,12 @@ export class HomePage {
         id: this.playerList.length + 1,
         name: ""
       });
-      console.log(this.playerList);
     }
   }
 
   removePlayer() {
     if (this.playerList.length > 2) {
       this.playerList.splice(this.playerList.length - 1, 1);
-      console.log(this.playerList);
     }
   }
 
@@ -87,7 +78,6 @@ export class HomePage {
         this.playerList.splice(this.playerList.indexOf(element));
       }
     });
-    console.log(this.playerList);
   }
 
   countEmptyPlayer() {
@@ -97,7 +87,6 @@ export class HomePage {
         count++;
       }
     });
-    console.log("count" + count);
     if (
       count == this.playerList.length ||
       (this.playerList.length == 2 && count == 1)

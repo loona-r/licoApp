@@ -69,10 +69,7 @@ export class BetSumPage {
       buttons: [
         {
           text: "Non",
-          role: "cancel",
-          handler: () => {
-            console.log("Cancel clicked");
-          }
+          role: "cancel"
         },
         {
           text: "Oui",

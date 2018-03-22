@@ -43,9 +43,6 @@ export class PrankPhonePage {
     this.dataProvider.getWordList().subscribe(data => {
       this.wordListLength = data.Mots.length;
       this.wordList = data.Mots;
-      console.log(
-        "ma word liste : " + this.wordList + "taille:" + this.wordListLength
-      );
       this.randomWord();
     });
     this.playerList = navParams.get("param1");
@@ -74,13 +71,7 @@ export class PrankPhonePage {
   changePlayer() {
     this.indexJoueur++;
     if (this.indexJoueur == this.playerList.length) this.indexJoueur = 0;
-    console.log(
-      "ancien joueur : " + this.joueur + " index : " + this.indexJoueur
-    );
     this.joueur = this.playerList[this.indexJoueur].name;
-    console.log(
-      "nouveau joueur : " + this.joueur + " index : " + this.indexJoueur
-    );
   }
 
   randomContact(): void {
@@ -95,11 +86,9 @@ export class PrankPhonePage {
           this.chosenContact["name"] = contacts[i].displayName;
           this.chosenContact["number"] = contacts[i].phoneNumbers[0].value;
           if (contacts[i].photos != null) {
-            console.log(contacts[i].photos);
             this.chosenContact["image"] = this.sanitizer.bypassSecurityTrustUrl(
               contacts[i].photos[0].value
             );
-            console.log(this.chosenContact);
           } else {
             this.chosenContact["image"] = "assets/imgs/licorne.png";
           }

@@ -138,9 +138,6 @@ export class HighwayPage {
 
   newCard(val) {
     if (this.modifIndex < 5) {
-      console.log("MODIFINDEX : " + this.modifIndex);
-      console.log(this.chosenCard);
-      console.log(this.centerCard);
       this.randomCard();
       if (val == 1) {
         this.chosenCard[this.modifIndex + 1].name = this.nextCard.name;
@@ -149,7 +146,6 @@ export class HighwayPage {
         this.centerCard = this.chosenCard[this.modifIndex + 1];
         if (this.nextCard.value <= this.chosenCard[this.modifIndex].value) {
           if (this.manche < 3) {
-            console.log("2+ MODIFINDEX : " + this.modifIndex);
             this.alertErreur();
           } else {
             this.finJeuJoueur();
@@ -165,7 +161,6 @@ export class HighwayPage {
         this.centerCard = this.chosenCard[this.modifIndex + 1];
         if (this.nextCard.value >= this.chosenCard[this.modifIndex].value) {
           if (this.manche < 3) {
-            console.log("2- MODIFINDEX : " + this.modifIndex);
             this.alertErreur();
           } else {
             this.finJeuJoueur();
@@ -175,10 +170,7 @@ export class HighwayPage {
           if (this.modifIndex == 5) this.alertWinner();
         }
       }
-
-      console.log("MODIFINDEX av: " + this.modifIndex);
     } else {
-      console.log("MODIFINDEX 2323: " + this.modifIndex);
       this.centerCard = this.chosenCard[this.modifIndex];
       this.alertWinner();
     }
